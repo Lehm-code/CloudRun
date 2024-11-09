@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 async def read_root(request: Request):
     # リクエストの受信をログに記録
     logger.info("Received a request")
-
+    print('ログ出力テスト')
     try:
         # JSONデータの取得と解析
         data = await request.json()
