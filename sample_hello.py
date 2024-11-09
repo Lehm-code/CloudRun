@@ -8,6 +8,8 @@ app = FastAPI()
 log_client = google.cloud.logging.Client()
 log_client.setup_logging()
 
+print('ログテスト')
+
 # ロガーを取得
 logger = logging.getLogger(__name__)
 
