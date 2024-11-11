@@ -1,5 +1,14 @@
 # main.py
 
+import logging
+import google.cloud.logging
+from fastapi import FastAPI, Request
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
 app = FastAPI()
 
 # Cloud Loggingハンドラを標準loggingモジュールに接続する

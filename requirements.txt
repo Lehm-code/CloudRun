@@ -3,3 +3,4 @@ uvicorn
 typing
 google-cloud-logging
 selenium
+webdriver_manager
