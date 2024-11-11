@@ -1,8 +1,7 @@
-# main.py
-
 import logging
 import google.cloud.logging
 from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse  # JSON形式のレスポンスを指定
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -67,11 +66,11 @@ async def search_endpoint(request: Request):
             
             # Seleniumを使って検索を実行
             results = search_with_selenium(query)
-            return {"results": results}
+            return JSONResponse(content={"results": results})  # JSON形式のレスポンス
         else:
             logger.warning("クエリが入力されていません。")
-            return {"message": "検索クエリが必要です"}
+            return JSONResponse(content={"message": "検索クエリが必要です"})  # JSON形式のレスポンス
     except Exception as e:
         # 例外発生時のエラーログ記録
         logger.error("エラー発生", exc_info=True)
-        return {"message": "An error occurred during processing"}
+        return JSONResponse(content={"message": "An error occurred during processing"})  # JSON形式のレスポンス
