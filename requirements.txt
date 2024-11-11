@@ -2,3 +2,4 @@ fastapi
 uvicorn
 typing
 google-cloud-logging
+selenium
