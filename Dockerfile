@@ -33,6 +33,7 @@ RUN apt update && apt install -y \
 # 4. ローカルのファイルをコンテナにコピー
 COPY ./requirements.txt /app/requirements.txt
 COPY ./main.py /app/main.py
+COPY ./lib /app/lib
 
 # 5. 依存パッケージのインストール
 RUN pip install --no-cache-dir --upgrade pip && \
