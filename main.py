@@ -27,11 +27,15 @@ async def search_endpoint(request: Request):
         json_message = GetJson(json_data)        
         logger.debug("プログラムは終了しました。")
         return json_message
+    except json.JSONDecodeError:
+        # JSONデコードエラーのログとレスポンス
+        logger.error("JSONのデコードに失敗しました。無効なJSON形式です。", exc_info=True)
+        return {"result" :"無効なJSON形式です。"}
     except Exception as e:
         # 例外発生時のエラーログ記録
-        logger.error("エラー発生", exc_info=True)
-        return {"result": "GetJson()は動作していません。"}
-    
+        logger.error("予期しないエラーが発生しました。", exc_info=True)
+        return {"result" :"予期しないエラーが発生しました。"}
+
 
 # プログラミングの呼び出し
 def GetJson(json_data):
