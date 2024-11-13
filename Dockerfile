@@ -1,5 +1,5 @@
 # 1. ベースイメージとしてPython 3.9（または任意のバージョン）を使用
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # 2. 作業ディレクトリを設定
 WORKDIR /app
@@ -32,7 +32,7 @@ RUN apt update && apt install -y \
 
 # 4. ローカルのファイルをコンテナにコピー
 COPY ./requirements.txt /app/requirements.txt
-COPY ./sample_hello.py /app/sample_hello.py
+COPY ./main.py /app/main.py
 
 # 5. 依存パッケージのインストール
 RUN pip install --no-cache-dir --upgrade pip && \
@@ -42,4 +42,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 RUN pip install webdriver-manager
 
 # 7. UvicornでFastAPIを実行
-CMD ["uvicorn", "sample_hello:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
