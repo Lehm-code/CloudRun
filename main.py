@@ -23,8 +23,8 @@ async def search_endpoint(request: Request):
     logger.info("リクエストを受信しました")
     try:
         # JSONデータの取得と解析
-        json_data = await request.json()
-        json_message = GetJson(json_data)        
+        data = await request.json()
+        json_message = GetJson(data)        
         logger.debug("プログラムは終了しました。")
         return json_message
     except json.JSONDecodeError:
@@ -38,8 +38,7 @@ async def search_endpoint(request: Request):
 
 
 # プログラミングの呼び出し
-def GetJson(json_data):
-    data = json.loads(json_data)
+def GetJson(data):
     message = {"result" : "初期化"}
     json_message = {"result" : "初期化"}
     # 必要なキーの存在確認
@@ -75,7 +74,6 @@ def GetJson(json_data):
             return json_message
         else:
             return json.dumps({"result": "ターゲットサイトが指定されていません。"})
-
     else:
         message = {"result" : "動作モードが指定されていません。"}
         json_message = json.dumps(message)
