@@ -39,7 +39,7 @@ async def search_endpoint(request: Request):
 
 # プログラミングの呼び出し
 def GetJson(json_data):
-    data = json_data
+    data = json.loads(json_data)
     message = {"result" : "初期化"}
     json_message = {"result" : "初期化"}
     if data['run_mode'] == 'update':
