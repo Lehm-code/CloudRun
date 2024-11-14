@@ -42,6 +42,11 @@ def GetJson(json_data):
     data = json.loads(json_data)
     message = {"result" : "初期化"}
     json_message = {"result" : "初期化"}
+    # 必要なキーの存在確認
+    if 'run_mode' not in data:
+        return json.dumps({"result": "動作モードが指定されていません。"})
+    if 'target_site' not in data:
+        return json.dumps({"result": "ターゲットサイトが指定されていません。"})
     if data['run_mode'] == 'update':
         if data['target_site'] == 'airwork':
             instance = AirWork(data)
@@ -54,9 +59,7 @@ def GetJson(json_data):
             json_message = json.dumps(message)
             return json_message
         else:
-            message = {"result" : "ターゲットサイトが指定されていません。"}
-            json_message = json.dumps(message)
-            return json_message
+            return json.dumps({"result": "ターゲットサイトが指定されていません。"})
     elif data['run_mode'] == 'scout':
         if data['target_site'] == 'airwork':
             # instance = AirWork(data)
@@ -71,9 +74,8 @@ def GetJson(json_data):
             json_message = json.dumps(message)
             return json_message
         else:
-            message = {"result" : "ターゲットサイトが指定されていません。"}
-            json_message = json.dumps(message)
-            return json_message
+            return json.dumps({"result": "ターゲットサイトが指定されていません。"})
+
     else:
         message = {"result" : "動作モードが指定されていません。"}
         json_message = json.dumps(message)
